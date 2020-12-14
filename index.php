@@ -9,55 +9,141 @@ date_default_timezone_set('Europe/Vilnius');
 //header("Refresh: $sec; url=$page");
 
 
-$phones = [
-    'Samsung' => [
-        [
-            'model' => 'galaxy s20',
-            'memory' => 128,
-            'OS' => 'Android',
-            'img' => 'images/s20.jpg',
-            'price' => 599.99
+//1. Sukurkite 29 dienu masyva panaudojant for cikla. Kiekvienoje dienoje turi
+// buti 'Name' => '1-dienis', '29-dienis' ir uzimtumas random vertinant nuo 0(laisva) iki 5(uzimtas)
+
+//2. Parasyti if kuris tikrintu ar 10 diena yra laisva, jei taip - ekrane raudona spalva, panaudojus
+//h1 taga atvaizduoti 'Tau siandiena laisva'.
+//3. Parasyti cikla kuris tikrintu visa musu masyva ir priklausomai nuo to ar masyve
+// yra daugiau nei 3 laisvos dienos atvaizduoti ekrane h3 tage melyna spalva 'Atostogos'.
+
+$month = [];
+$atostogos = 0;
+$counter = 0;
+
+for ($x = 1; $x < 29; $x++) {
+    $month[] = [
+        'name' => $x . ' dienis',
+        'busyIndex' => rand(0, 5),
+    ];
+}
+//var_dump($month);
+
+$saldainiai = [
+    'sveriami' => [
+        'sokoladiniai' => [
+            [
+                'name' => 'Migle',
+                'price' => 9,
+            ],
+            [
+                'name' => 'Kauke',
+                'price' => 7,
+            ],
         ],
-        [
-            'model' => 'galaxy s8',
-            'memory' => 64,
-            'OS' => 'Android',
-            'img' => 'images/s8.jpg',
-            'price' => 274.00
+        'ledinukai' => [
+            [
+                'name' => 'Bibi',
+                'price' => 3.4,
+            ],
+            [
+                'name' => 'Ledainis',
+                'price' => 3,
+            ],
         ],
-        [
-            'model' => 'galaxy s10',
-            'memory' => 128,
-            'OS' => 'Android',
-            'img' => 'images/s10.jpg',
-            'price' => 539.99
-        ]
     ],
-    'iPhone' => [
-        [
-            'model' => 'iphone 7',
-            'memory' => 32,
-            'OS' => 'iOS',
-            'img' => 'images/iphone 7.jpg',
-            'price' => 214.00
+    'batoneliai' => [
+        'sokoladiniai' => [
+            [
+                'name' => 'HemaToGen',
+                'price' => 1,
+            ],
+            [
+                'name' => 'Mars',
+                'price' => 0.2,
+            ],
         ],
-        [
-            'model' => 'iphone x',
-            'memory' => 64,
-            'OS' => 'iOS',
-            'img' => 'images/iPhone X.jpg',
-            'price' => 399.99
+        'aviziniai' => [
+            [
+                'name' => 'Corny',
+                'price' => 1.2,
+            ],
+            [
+                'name' => 'Belvita',
+                'price' => 0.83,
+            ],
         ],
-        [
-            'model' => 'galaxy 11',
-            'memory' => 64,
-            'OS' => 'iOS',
-            'img' => 'images/iphone11.png',
-            'price' => 'i pm'
-        ]
     ],
-]
+];
+
+print $saldainiai['sveriami']['sokoladiniai'][1]['price'];
+
+print $saldainiai['batoneliai']['sokoladiniai'][1]['name'];
+
+foreach ($saldainiai['batoneliai']['aviziniai'] as $item) {
+    print $item['name'] . " <br>";
+}
+
+foreach ($saldainiai['sveriami']['ledinukai'] as $item) {
+    print $item['name'] . ' ';
+    print $item['price'] . " <br>";
+
+}
+
+foreach ($saldainiai as $sveriami) {
+    foreach ($sveriami as $sokoladiniai) {
+        foreach ($sokoladiniai as $turinys) {
+            foreach ($turinys as $preke) {
+                if (is_float($preke)) {
+                    $preke = '*';
+                }
+            }
+        }
+    }
+}
+
+$darbuotojiai = [
+    [
+        'name' => 'Juozas',
+        'lastname' => 'Juozaitis',
+        'age' => '40',
+        'sex' => 'man',
+    ],
+    [
+        'name' => 'Milda',
+        'lastname' => 'Mildauskaite',
+        'age' => '28',
+        'sex' => 'woman',
+    ],
+    [
+        'name' => 'Darius',
+        'lastname' => 'Dariauskas',
+        'age' => '40',
+        'sex' => 'man',
+    ],
+    [
+        'name' => 'Skaiste',
+        'lastname' => 'Uzkamante',
+        'age' => '40',
+        'sex' => 'woman',
+    ],
+    [
+        'name' => 'Giedre',
+        'lastname' => 'Miliauskiene',
+        'age' => '38',
+        'sex' => 'woman',
+    ],
+    [
+        'name' => 'Kasparas',
+        'lastname' => 'Dambrauskas',
+        'age' => '22',
+        'sex' => 'man',
+    ],
+];
+
+
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,45 +155,67 @@ $phones = [
     <style>
         body {
             display: flex;
+            flex-direction: column;
         }
-        .companyContainer {
-            width: 45%;
-            border: 15px outset darkred;
-            margin: 15px;
+
+        img {
+            width: 21px;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: darkmagenta;
+            border-radius: 15px;
+            padding: 15px;
             text-align: center;
-        }
-        .companyContainer img {
-            width: 210px;
-        }
-        .backgroundRed {
-            background-color: #8c2727;
-        }
-        .title {
-            font-size: 21px;
-            color: white;
+            width: 350px;
+            margin: 9px;
         }
     </style>
 </head>
 <body>
 
+<?php for ($x = 0; $x < count($month); $x += 10) : ?>
+    <?php if ($month[$x]['busyIndex'] === 0) : ?>
+        <h1 style="background-color: green"><?php print $month[$x]['name']; ?> is free</h1>
+    <?php else : ?>
+        <h1 style="background-color: grey"><?php print $month[$x]['name']; ?> day is busy</h1>
+    <?php endif; ?>
+<?php endfor; ?>
+<?php for ($x = 0; $x < count($month); $x++) : ?>
+    <?php if ($month[$x]['busyIndex'] == 0) : $atostogos++ ?>
+        <?php if ($atostogos >= 3) : ?>
+            <h1 style="background-color: green">Atostogos</h1>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endfor; ?>
 
-<?php foreach ($phones as $key => $value):?>
 
-    <div class="companyContainer">
-        <div><h2><?php print $key; ?></h2></div>
 
-                <?php foreach ($value as $phone): ?>
-                <div style="margin: 15px">
-                    <img src="<?php print $phone['img'] ;?>" alt="">
-                    <div class="backgroundRed title"><strong><?php print $phone['model'] ;?></strong></div>
-                    <div class="backgroundRed"><?php print $phone['memory'] ;?>Gb</div>
-                    <div class="backgroundRed"><?php print $phone['OS'] ;?></div>
-                    <div class="backgroundRed"><?php print $phone['price'] ;?> pinigu</div>
-                </div>
-
-                <?php endforeach; ?>
+<?php foreach ($darbuotojiai as $darbuotojas): ?>
+    <?php if ($darbuotojas['age'] < 30 && $darbuotojas['sex'] === 'woman') : ?>
+        <div>
+            asmuo jaunesnis nei 30 ir yra moteris:<strong><?php print $darbuotojas['name']; ?></strong>
+        </div>
+    <?php endif; ?>
+    <?php if ($darbuotojas['age'] == 40 && $darbuotojas['sex'] === 'man'): ?>
+        <?php $counter++; ?>
+        <div>
+            vyru kurie turi 40 metu yra:<strong><?php print $counter; ?></strong>
+        </div>
+    <?php endif; ?>
+    <div class="card">
+        <h2><?php print $darbuotojas['name'] . $darbuotojas['lastname']; ?></h2>
+        <h3><?php print $darbuotojas['age']; ?></h3>
+        <h5><?php print $darbuotojas['sex']; ?></h5>
     </div>
 
 <?php endforeach; ?>
+<div>
+
+</div>
+
 </body>
 </html>
