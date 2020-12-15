@@ -12,8 +12,8 @@ $shootX = rand(1, 599);
 $shootY = rand(1, 599);
 
 
-$thicknessLine = '3px'
-
+$thicknessLine = '3px';
+print pow(9,2)
 ?>
 
 <!doctype html>
@@ -34,11 +34,12 @@ $thicknessLine = '3px'
         .taikinys {
             width: 600px;
             height: 600px;
-            background-image: url("images/taikinys.png");
+            background-image: url("images/taikinysApskritas.png");
             background-size: cover;
             position: absolute;
             top: 390px;
             left: 50%;
+            border-radius: 50%;
             transform: translate(-50%, -50%);
             display: flex;
             align-content: center;
@@ -61,7 +62,7 @@ $thicknessLine = '3px'
             position: absolute;
             top: <?php print $shootY ;?>px;
             left: <?php print $shootX;?>px;
-            /*top: 504px;*/
+            /*top: 573px;*/
             /*left: 300px;*/
             transform: translate(-50%, -50%);
         }
@@ -72,7 +73,7 @@ $thicknessLine = '3px'
             top: 50%;
             left: -51%;
             transform: translate(0, -50%);
-            background-color: red;
+            background-color: lawngreen;
             position: absolute;
         }
 
@@ -82,7 +83,7 @@ $thicknessLine = '3px'
             left: 50%;
             top: -1%;
             transform: translate(-50%, -50%);
-            background-color: red;
+            background-color: lawngreen;
             position: absolute;
         }
 
@@ -92,7 +93,7 @@ $thicknessLine = '3px'
             top: 50%;
             left: 51%;
             transform: translate(0, -50%);
-            background-color: red;
+            background-color: lawngreen;
             position: absolute;
         }
 
@@ -102,7 +103,7 @@ $thicknessLine = '3px'
             left: 50%;
             top: 50%;
             transform: translate(-50%, 0);
-            background-color: red;
+            background-color: lawngreen;
             position: absolute;
         }
 
@@ -131,12 +132,18 @@ $thicknessLine = '3px'
     </div>
 </div>
 <div class="title">surinkta tasku: <p>
-        <?php if ($shootY > 177 && $shootY < 423 && $shootX > 177 && $shootX < 423): ?>
-            <?= '10' ?>
-        <?php elseif ($shootY > 96 && $shootY < 504 && $shootX > 96 && $shootX < 504): ?>
+        <?php if (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(54,2)): ?>
             <?= '5' ?>
-        <?php elseif ($shootY > 0 && $shootY < 600 && $shootX > 0 && $shootX < 600): ?>
+        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(120,2)): ?>
+            <?= '4' ?>
+        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(174,2)): ?>
+            <?= '3' ?>
+        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(228,2)): ?>
+            <?= '2' ?>
+        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(273,2)): ?>
             <?= '1' ?>
+        <?php else: ?>
+            <?= '0' ?>
         <?php endif ?>
     </p></div>
 
