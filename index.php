@@ -8,12 +8,14 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$distance = rand(0,999);
-$consumption = 7.5 ;
-$price = 1.2 ;
+$distance = rand(1,60000);
+$lightSpeed = 300000 ;
+$soundSpeed = 333 ;
 
-$fuel_consumed = $distance/100*$consumption;
-$totalPrice = $price * $fuel_consumed;
+$lightTime = $distance/$lightSpeed;
+$soundTime = $distance/$soundSpeed;
+
+$delay = $soundTime - $lightTime;
 
 
 ?>
@@ -53,11 +55,11 @@ $totalPrice = $price * $fuel_consumed;
 </head>
 <body>
 
-<h1>Trip calculator</h1>
+<h1>speed of light vs speed of sound</h1>
 <ul>
-    <li>distance we made: <strong><?php print $distance ;?></strong></li>
-    <li>fuel consumed: <strong><?php print $fuel_consumed ?></strong></li>
-    <li>total price of trip: <strong><?php print $totalPrice ?></strong></li>
+    <li>experiment distance: <strong><?php print $distance ;?></strong></li>
+    <li>delay between two sounds: <strong><?php print $delay?>s</strong></li>
+
 </ul>
 
 </body>
