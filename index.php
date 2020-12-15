@@ -8,15 +8,15 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$money = rand(1,100);
-$beerPrice = 4.5 ;
-$beersPerNight = rand(1,15);
+$money = rand(1, 100);
+$beerPrice = 4.5;
+$trigger = true;
 
-$beerHits = floor($money/$beerPrice);
-$moneyLeft = $money-($beerHits *$beerPrice);
+$beerHits = floor($money / $beerPrice);
+$moneyLeft = $money - ($beerHits * $beerPrice);
 
-
-
+$lost = 'Borat lost his wallet';
+$notLost = 'Borat does not lost his wallet'
 
 ?>
 
@@ -57,9 +57,27 @@ $moneyLeft = $money-($beerHits *$beerPrice);
 
 <h1>Students regular friday</h1>
 <ul>
-    <li>We had <strong><?php print $money ;?></strong> cash</li>
-    <li>So we hit <strong><?php print $beerHits?> beers</strong></li>
-    <li>And still back with <strong><?php print $moneyLeft?></strong> cash</li>
+    <li>Borat had <strong><?= $money; ?></strong> cash</li>
+    <li>So we hit <strong><?= $beerHits ?></strong> beers</li>
+    <li>Borat back home with <strong><?= $moneyLeft ?></strong> money left</li>
+    <li>
+        <?php if ($beerHits < 10): ?>
+            <?= 'no chance to lost wallet' ?>
+        <?php endif; ?>
+        <?php if ($beerHits >= 10): ?>
+            <?php if (rand(1, 100) < 50): ?>
+                <?= $lost ?>
+            <?php else: ?>
+                <?= $notLost ?>
+            <?php endif; ?>
+        <?php elseif ($beerHits >= 12): ?>
+            <?php if (rand(1, 100) < 30): ?>
+                <?= $lost ?>
+            <?php else: ?>
+                <?= $notLost ?>
+            <?php endif; ?>
+        <?php endif; ?>
+    </li>
 </ul>
 
 </body>
