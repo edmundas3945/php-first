@@ -37,7 +37,7 @@ $notLost = 'Borat does not lost his wallet'
         }
 
         img {
-            width: 21px;
+            width: 90px;
         }
 
         .card {
@@ -63,24 +63,31 @@ $notLost = 'Borat does not lost his wallet'
     <li>
         <?php if ($beerHits < 10): ?>
             <?= 'no chance to lost wallet' ?>
+            <?= '<img src="images/notlost.png" alt="">' ?>
         <?php endif; ?>
         <?php if ($beerHits >= 10): ?>
             <?php if (rand(1, 100) < 50): ?>
                 <?= $lost ?>
+                <?= '<img src="images/lostwallet.png" alt="">' ?>
             <?php else: ?>
                 <?= $notLost ?>
+                <?= '<img src="images/notlost.png" alt="">' ?>
             <?php endif; ?>
         <?php elseif ($beerHits >= 12): ?>
             <?php if (rand(1, 100) < 30): ?>
                 <?= $lost ?>
+                <?= '<img src="images/lostwallet.png" alt="">' ?>
             <?php else: ?>
                 <?= $notLost ?>
+                <?= '<img src="images/notlost.png" alt="">' ?>
             <?php endif; ?>
         <?php elseif ($beerHits > 15): ?>
             <?= $lost ?>
+            <?= '<img src="images/lostwallet.png" alt="">' ?>
         <?php endif; ?>
     </li>
 </ul>
+
 
 </body>
 </html>
