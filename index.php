@@ -8,14 +8,14 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$distance = rand(1,60000);
-$lightSpeed = 300000 ;
-$soundSpeed = 333 ;
+$money = rand(1,100);
+$beerPrice = 4.5 ;
+$beersPerNight = rand(1,15);
 
-$lightTime = $distance/$lightSpeed;
-$soundTime = $distance/$soundSpeed;
+$beerHits = floor($money/$beerPrice);
+$moneyLeft = $money-($beerHits *$beerPrice);
 
-$delay = $soundTime - $lightTime;
+
 
 
 ?>
@@ -55,11 +55,11 @@ $delay = $soundTime - $lightTime;
 </head>
 <body>
 
-<h1>speed of light vs speed of sound</h1>
+<h1>Students regular friday</h1>
 <ul>
-    <li>experiment distance: <strong><?php print $distance ;?></strong></li>
-    <li>delay between two sounds: <strong><?php print $delay?>s</strong></li>
-
+    <li>We had <strong><?php print $money ;?></strong> cash</li>
+    <li>So we hit <strong><?php print $beerHits?> beers</strong></li>
+    <li>And still back with <strong><?php print $moneyLeft?></strong> cash</li>
 </ul>
 
 </body>
