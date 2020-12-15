@@ -8,15 +8,9 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$money = rand(1, 100);
-$beerPrice = 4.5;
-$trigger = true;
-
-$beerHits = floor($money / $beerPrice);
-$moneyLeft = $money - ($beerHits * $beerPrice);
-
-$lost = 'Borat lost his wallet';
-$notLost = 'Borat does not lost his wallet'
+$when = ['early and ', 'late and '];
+$drinks = ['sober', 'drunk'];
+$cameHome = $when[rand(0, 1)] . $drinks[rand(0, 1)];
 
 ?>
 
@@ -34,12 +28,11 @@ $notLost = 'Borat does not lost his wallet'
             display: flex;
             flex-direction: column;
             text-align: center;
+            justify-content: center;
         }
-
         img {
-            width: 90px;
+            width: 210px;
         }
-
         .card {
             display: flex;
             justify-content: center;
@@ -55,38 +48,25 @@ $notLost = 'Borat does not lost his wallet'
 </head>
 <body>
 
-<h1>Students regular friday</h1>
-<ul>
-    <li>Borat had <strong><?= $money; ?></strong> cash</li>
-    <li>So we hit <strong><?= $beerHits ?></strong> beers</li>
-    <li>Borat back home with <strong><?= $moneyLeft ?></strong> money left</li>
-    <li>
-        <?php if ($beerHits < 10): ?>
-            <?= 'no chance to lost wallet' ?>
-            <?= '<img src="images/notlost.png" alt="">' ?>
-        <?php endif; ?>
-        <?php if ($beerHits >= 10): ?>
-            <?php if (rand(1, 100) < 50): ?>
-                <?= $lost ?>
-                <?= '<img src="images/lostwallet.png" alt="">' ?>
-            <?php else: ?>
-                <?= $notLost ?>
-                <?= '<img src="images/notlost.png" alt="">' ?>
-            <?php endif; ?>
-        <?php elseif ($beerHits >= 12): ?>
-            <?php if (rand(1, 100) < 30): ?>
-                <?= $lost ?>
-                <?= '<img src="images/lostwallet.png" alt="">' ?>
-            <?php else: ?>
-                <?= $notLost ?>
-                <?= '<img src="images/notlost.png" alt="">' ?>
-            <?php endif; ?>
-        <?php elseif ($beerHits > 15): ?>
-            <?= $lost ?>
-            <?= '<img src="images/lostwallet.png" alt="">' ?>
-        <?php endif; ?>
-    </li>
-</ul>
+<h1>came home <?= $cameHome ?></h1>
+
+<div>
+    <?php if ($cameHome == 'early and sober'): ?>
+    <?= '<img src="images/happyWife.png" alt="">' ?>
+        <h3><?= 'sleep with wife' ?></h3>
+    <?php elseif ($cameHome == 'late and sober') :?>
+    <?= '<img src="images/happyWife.png" alt="">' ?>
+        <h3><?= 'sleep with wife' ?></h3>
+    <?php elseif ($cameHome == 'late and drunk') :?>
+    <?= '<img src="images/angryWife.png" alt="">' ?>
+        <h3><?= 'sleep on couch' ?></h3>
+    <?php elseif ($cameHome == 'early and drunk') :?>
+    <?= '<img src="images/angryWife.png" alt="">' ?>
+        <h3><?= 'sleep on couch' ?></h3>
+    <?php endif;?>
+</div>
+
+
 
 
 </body>
