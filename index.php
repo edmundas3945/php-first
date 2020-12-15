@@ -76,6 +76,8 @@ $notLost = 'Borat does not lost his wallet'
             <?php else: ?>
                 <?= $notLost ?>
             <?php endif; ?>
+        <?php elseif ($beerHits > 15): ?>
+            <?= $lost ?>
         <?php endif; ?>
     </li>
 </ul>
