@@ -8,9 +8,14 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$when = ['early and ', 'late and '];
-$drinks = ['sober', 'drunk'];
-$cameHome = $when[rand(0, 1)] . $drinks[rand(0, 1)];
+$shootX = rand(1,499);
+$shootY = rand(1,499);
+$targetX = rand(1,499);
+$targetY = rand(1,499);
+$paklaidaX = $shootX - $targetX;
+$paklaidaY = $shootY - $targetY;
+
+$thicknessLine = '3px'
 
 ?>
 
@@ -25,46 +30,139 @@ $cameHome = $when[rand(0, 1)] . $drinks[rand(0, 1)];
     <title>Document</title>
     <style>
         body {
+            position: relative;
+            text-align: center;
+        }
+        .taikinys {
+            width: 500px;
+            height: 500px;
+            background-color: cadetblue;
+            border-radius: 50%;
+            position: absolute;
+            top: 390px;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
-            flex-direction: column;
+        }
+        .target{
+            width: 21px;
+            height: 21px;
+            position: absolute;
+            top: <?php print $targetY ;?>px;
+            left: <?php print $targetX ;?>px;
+            transform: translate(-50%, -50%);
+        }
+        .line1 {
+            width: 100%;
+            height: <?= $thicknessLine?>;
+            top: 50%;
+            left: -51%;
+            transform: translate(0,-50%);
+            background-color: lawngreen;
+            position: absolute;
+        }
+        .line2{
+            height: 100%;
+            width: <?= $thicknessLine?>;
+            left: 50%;
+            top: -1%;
+            transform: translate(-50%,-50%);
+            background-color: lawngreen;
+            position: absolute;
+        }
+        .line3 {
+            width: 100%;
+            height: <?= $thicknessLine?>;
+            top: 50%;
+            left: 51%;
+            transform: translate(0,-50%);
+            background-color: lawngreen;
+            position: absolute;
+        }
+        .line4{
+            height: 100%;
+            width: <?= $thicknessLine?>;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,0);
+            background-color: lawngreen;
+            position: absolute;
+        }
+        .shoot{
+            width: 21px;
+            height: 21px;
+            position: absolute;
+            top: <?php print $shootY ;?>px;
+            left: <?php print $shootX;?>px;
+            transform: translate(-50%, -50%);
+        }
+        .redLine1 {
+            width: 100%;
+            height: <?= $thicknessLine?>;
+            top: 50%;
+            left: -51%;
+            transform: translate(0,-50%);
+            background-color: red;
+            position: absolute;
+        }
+        .redLine2{
+            height: 100%;
+            width: <?= $thicknessLine?>;
+            left: 50%;
+            top: -1%;
+            transform: translate(-50%,-50%);
+            background-color: red;
+            position: absolute;
+        }
+        .redLine3 {
+            width: 100%;
+            height: <?= $thicknessLine?>;
+            top: 50%;
+            left: 51%;
+            transform: translate(0,-50%);
+            background-color: red;
+            position: absolute;
+        }
+        .redLine4{
+            height: 100%;
+            width: <?= $thicknessLine?>;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,0);
+            background-color: red;
+            position: absolute;
+        }
+        .title {
+            display: flex;
             text-align: center;
             justify-content: center;
         }
-        img {
-            width: 210px;
-        }
-        .card {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            background-color: darkmagenta;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            width: 350px;
-            margin: 9px;
+        p{
+            color: blue;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-<h1>came home <?= $cameHome ?></h1>
 
-<div>
-    <?php if ($cameHome == 'early and sober'): ?>
-    <?= '<img src="images/happyWife.png" alt="">' ?>
-        <h3><?= 'sleep with wife' ?></h3>
-    <?php elseif ($cameHome == 'late and sober') :?>
-    <?= '<img src="images/happyWife.png" alt="">' ?>
-        <h3><?= 'sleep with wife' ?></h3>
-    <?php elseif ($cameHome == 'late and drunk') :?>
-    <?= '<img src="images/angryWife.png" alt="">' ?>
-        <h3><?= 'sleep on couch' ?></h3>
-    <?php elseif ($cameHome == 'early and drunk') :?>
-    <?= '<img src="images/angryWife.png" alt="">' ?>
-        <h3><?= 'sleep on couch' ?></h3>
-    <?php endif;?>
+<div class="taikinys">
+    <div class="target">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+        <div class="line4"></div>
+    </div>
+    <div class="shoot">
+        <div class="redLine1"></div>
+        <div class="redLine2"></div>
+        <div class="redLine3"></div>
+        <div class="redLine4"></div>
+    </div>
 </div>
+<div class="title">mistake x:<p><?= abs($paklaidaX);?></p>,  y:<p><?= abs($paklaidaY);?></p></div>
+<div> target coordinates x: <?= $targetX;?>, y: <?= $targetY;?></div>
+<div> shoot coordinates x: <?= $shootX;?>, y: <?= $shootY;?></div>
 
 
 
