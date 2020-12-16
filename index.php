@@ -8,12 +8,22 @@ date_default_timezone_set('Europe/Vilnius');
 //$sec = "1";
 //header("Refresh: $sec; url=$page");
 
-$shootX = rand(1, 599);
-$shootY = rand(1, 599);
+$days = 365;
+$cigs1to5day = rand(3,4);
+$cigs6day = rand(10,20);
+$cigs7day = rand(1,3);
+$packPrice = 3.50;
+$packSize = 20;
+$cigsPerYear = ($cigs1to5day+$cigs6day+$cigs7day)*52;
+$packsPerYear = $cigsPerYear/20;
+$cigLikutis= $cigsPerYear%20;
+$moneyPerYear = $packsPerYear*$packPrice;
+
+$minutesPerCig = 5;
+$minutesPerYear = $minutesPerCig * $cigsPerYear;
+$hoursPerYear = $minutesPerYear/60;
 
 
-$thicknessLine = '3px';
-print pow(9,2)
 ?>
 
 <!doctype html>
@@ -30,122 +40,26 @@ print pow(9,2)
             position: relative;
             text-align: center;
         }
-
-        .taikinys {
-            width: 600px;
-            height: 600px;
-            background-image: url("images/taikinysApskritas.png");
-            background-size: cover;
-            position: absolute;
-            top: 390px;
-            left: 50%;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
-        .center {
-
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background-color: red;
-            top: 50%;
-            left: 50%;
-        }
-
-        .shoot {
-            width: 21px;
-            height: 21px;
-            position: absolute;
-            top: <?php print $shootY ;?>px;
-            left: <?php print $shootX;?>px;
-            /*top: 573px;*/
-            /*left: 300px;*/
-            transform: translate(-50%, -50%);
-        }
-
-        .redLine1 {
-            width: 100%;
-            height: <?= $thicknessLine?>;
-            top: 50%;
-            left: -51%;
-            transform: translate(0, -50%);
-            background-color: lawngreen;
-            position: absolute;
-        }
-
-        .redLine2 {
-            height: 100%;
-            width: <?= $thicknessLine?>;
-            left: 50%;
-            top: -1%;
-            transform: translate(-50%, -50%);
-            background-color: lawngreen;
-            position: absolute;
-        }
-
-        .redLine3 {
-            width: 100%;
-            height: <?= $thicknessLine?>;
-            top: 50%;
-            left: 51%;
-            transform: translate(0, -50%);
-            background-color: lawngreen;
-            position: absolute;
-        }
-
-        .redLine4 {
-            height: 100%;
-            width: <?= $thicknessLine?>;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, 0);
-            background-color: lawngreen;
-            position: absolute;
-        }
-
-        .title {
-            display: flex;
-            text-align: center;
-            justify-content: center;
-        }
-
-        p {
-            color: blue;
-            margin: 0;
+        img {
+            width: 90px;
         }
     </style>
 </head>
 <body>
 
-
-<div class="taikinys">
-
-    <div class="shoot">
-        <div class="redLine1"></div>
-        <div class="redLine2"></div>
-        <div class="redLine3"></div>
-        <div class="redLine4"></div>
-    </div>
+<h1>My smoke calculator</h1>
+<h2><?php print $moneyPerYear ?> $ per year</h2>
+<h2><?php print $hoursPerYear ?> hours per year</h2>
+<div style="display: flex; flex-wrap: wrap">
+    <?php for ($x =0 ; $x < floor($packsPerYear); $x++) :?>
+    <?= '<div><img src="images/malboro.png" alt=""></div>' ?>
+    <?php endfor;?>
 </div>
-<div class="title">surinkta tasku: <p>
-        <?php if (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(54,2)): ?>
-            <?= '5' ?>
-        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(120,2)): ?>
-            <?= '4' ?>
-        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(174,2)): ?>
-            <?= '3' ?>
-        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(228,2)): ?>
-            <?= '2' ?>
-        <?php elseif (pow($shootY - 300,2) + pow($shootX - 300,2) < pow(273,2)): ?>
-            <?= '1' ?>
-        <?php else: ?>
-            <?= '0' ?>
-        <?php endif ?>
-    </p></div>
+<div style="display: flex; flex-wrap: wrap">
+    <?php for ($x =0 ; $x < $cigLikutis; $x++) : ?>
+        <?= '<div><img src="images/cig.jpg" alt=""></div>' ?>
+    <?php endfor;?>
+</div>
 
 
 </body>
